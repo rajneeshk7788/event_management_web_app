@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { AosInit } from '@/components/aos-init'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -39,23 +40,10 @@ export default function RootLayout({
       <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
       </head>
-      <body className={`font-sans antialiased`}>
+      <body className={`font-sans antialiased`} suppressHydrationWarning>
+        <AosInit />
         {children}
         <Analytics />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            if (typeof AOS !== 'undefined') {
-              AOS.init({
-                duration: 800,
-                easing: 'ease-in-out-cubic',
-                once: true,
-                offset: 100,
-                mirror: false,
-              });
-            }
-          `
-        }} />
       </body>
     </html>
   )

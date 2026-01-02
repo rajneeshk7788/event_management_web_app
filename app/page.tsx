@@ -6,7 +6,6 @@ import { CalendarDays, Users, Zap, ArrowRight, Search, Sparkles, ChevronLeft, Ch
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
 import { Navbar } from "@/components/navbar"
-import Aos from "aos"
 
 const featuredEvents = [
   {
@@ -187,9 +186,6 @@ export default function Home() {
     return () => clearInterval(timer)
   }, [])
 
-  useEffect(() => {
-    Aos.refresh()
-  }, [])
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % featuredEvents.length)
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + featuredEvents.length) % featuredEvents.length)
@@ -214,7 +210,7 @@ export default function Home() {
               className="text-center space-y-10"
             >
               <motion.div variants={itemVariants} className="space-y-6">
-                <div className="inline-block" data-aos="fade-down">
+                <div className="inline-block" data-aos="fade-down" suppressHydrationWarning>
                   <span className="text-sm font-semibold text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
                     The Future of Events
                   </span>
@@ -223,6 +219,7 @@ export default function Home() {
                   className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-balance leading-tight"
                   data-aos="fade-up"
                   data-aos-delay="100"
+                  suppressHydrationWarning
                 >
                   Create Events That{" "}
                   <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
@@ -233,6 +230,7 @@ export default function Home() {
                   className="text-xl md:text-2xl text-muted-foreground text-balance max-w-3xl mx-auto leading-relaxed"
                   data-aos="fade-up"
                   data-aos-delay="200"
+                  suppressHydrationWarning
                 >
                   Discover unforgettable experiences, manage every detail effortlessly, and build meaningful connections
                   with your community
@@ -245,6 +243,7 @@ export default function Home() {
                 className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4"
                 data-aos="fade-up"
                 data-aos-delay="300"
+                suppressHydrationWarning
               >
                 <Link href="/events" className="w-full sm:w-auto">
                   <Button
@@ -310,6 +309,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8"
             data-aos="fade-up"
+            suppressHydrationWarning
           >
             {[
               { label: "Active Events", value: "2,500+", icon: CalendarDays },
@@ -349,6 +349,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="space-y-8"
             data-aos="fade-up"
+            suppressHydrationWarning
           >
             <div className="text-center">
               <h2 className="text-5xl md:text-6xl font-bold mb-4 text-balance">Featured Events</h2>
@@ -457,7 +458,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="space-y-12"
           >
-            <div className="text-center" data-aos="fade-up">
+            <div className="text-center" data-aos="fade-up" suppressHydrationWarning>
               <h2 className="text-5xl md:text-6xl font-bold mb-4 text-balance">Explore by Category</h2>
               <p className="text-xl text-muted-foreground">Find events that match your interests and passions</p>
             </div>
@@ -472,6 +473,7 @@ export default function Home() {
                   transition={{ delay: index * 0.1 }}
                   data-aos="zoom-in"
                   data-aos-delay={index * 50}
+                  suppressHydrationWarning
                 >
                   <Link href={`/events?category=${category.name.toLowerCase()}`}>
                     <div className="group relative overflow-hidden rounded-2xl cursor-pointer">
@@ -512,7 +514,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="space-y-12"
           >
-            <div className="text-center" data-aos="fade-up">
+            <div className="text-center" data-aos="fade-up" suppressHydrationWarning>
               <h2 className="text-5xl md:text-6xl font-bold mb-4 text-balance">Happening Soon</h2>
               <p className="text-xl text-muted-foreground">Don't miss these upcoming events near you</p>
             </div>
@@ -527,6 +529,7 @@ export default function Home() {
                   transition={{ delay: index * 0.1 }}
                   data-aos="fade-up"
                   data-aos-delay={index * 100}
+                  suppressHydrationWarning
                 >
                   <Link href={`/events/${event.id}`}>
                     <div className="group relative overflow-hidden rounded-2xl bg-card border border-muted/30 hover:border-primary/50 transition-all cursor-pointer">
@@ -565,7 +568,7 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="text-center" data-aos="fade-up">
+            <div className="text-center" data-aos="fade-up" suppressHydrationWarning>
               <Link href="/events">
                 <Button
                   size="lg"
@@ -587,6 +590,7 @@ export default function Home() {
             viewport={{ once: true, margin: "-100px" }}
             className="text-center mb-20"
             data-aos="fade-up"
+            suppressHydrationWarning
           >
             <h2 className="text-5xl md:text-6xl font-bold mb-6 text-balance">Everything You Need</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -610,6 +614,7 @@ export default function Home() {
                   className="group relative"
                   data-aos="fade-up"
                   data-aos-delay={index * 100}
+                  suppressHydrationWarning
                 >
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${feature.linear} rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-300`}
@@ -635,6 +640,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="relative rounded-3xl overflow-hidden"
             data-aos="zoom-in"
+            suppressHydrationWarning
           >
             <div className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-secondary opacity-10" />
             <div className="relative p-12 md:p-16 text-center backdrop-blur-sm bg-card/50 border border-muted/30">
